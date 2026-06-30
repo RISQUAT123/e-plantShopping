@@ -61,7 +61,7 @@ const handleCheckoutShopping = (e) => {
     // Dispatch the removeItem action using the item's name as the identifier
   dispatch(removeItem({ name: item.name }));
   // Automatic removal inside your decrease button function
-
+}
   const handleDecrementWithRemoval = (item) => {
   if (item.quantity > 1) {
     dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
@@ -69,7 +69,6 @@ const handleCheckoutShopping = (e) => {
     // If quantity is 1 and they click minus, delete the item entirely
     dispatch(removeItem({ name: item.name }));
   }
-}
 };
 
   // Calculate total cost based on quantity for an item
@@ -106,7 +105,7 @@ const handleCheckoutShopping = (e) => {
       <div className="continue_shopping_btn">
         <button className="get-started-button" onClick={(e) => handleContinueShopping(e)}>Continue Shopping</button>
         <br />
-        <button className="get-started-button1">Checkout</button>
+        <button className="get-started-button1" onClick={(e) => handleCheckoutShopping(e)}>Checkout</button>
       </div>
     </div>
   );
