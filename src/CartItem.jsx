@@ -60,7 +60,17 @@ const handleCheckoutShopping = (e) => {
   const handleRemove = (item) => {
     // Dispatch the removeItem action using the item's name as the identifier
   dispatch(removeItem({ name: item.name }));
-  };
+  // Automatic removal inside your decrease button function
+
+  const handleDecrementWithRemoval = (item) => {
+  if (item.quantity > 1) {
+    dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
+  } else {
+    // If quantity is 1 and they click minus, delete the item entirely
+    dispatch(removeItem({ name: item.name }));
+  }
+}
+};
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
