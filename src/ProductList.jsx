@@ -1,28 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react'; 
 import { useSelector, useDispatch } from 'react-redux';
-import './ProductList.css'
+import './ProductList.css';
 import CartItem from './CartItem';
-import addItem from './CartSlice.jsx';
+import { addItem } from './CartSlice.jsx'; 
 
-const ProductList = () => {
+const ProductList = ({ onHomeClick }) => {
   const dispatch = useDispatch();
-
    //  Access the Redux store to retrieve the cart items array
   const cartItems = useSelector((state) => state.cart.items);
 
+    const [showCart, setShowCart] = useState(false);
+    const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
+    const [addedToCart, setAddedToCart] = useState({});
   //  Calculate the total quantity of items currently in the cart
-  const calculateTotalQuantity = () => { return CartItems ? 
-    CartItems.reduce((total, item) => total + item.quantity, 0) : 0; };
+  const calculateTotalQuantity = () => { return cartItems ? 
+    cartItems.reduce((total, item) => total + item.quantity, 0) : 0; 
  
     //Use the addItem action to add selected products to the cart
   const handleAddToCart = (plant) => {
     dispatch(addItem(plant));
   }
+
 };
-function ProductList({ onHomeClick }) {
-    const [showCart, setShowCart] = useState(false);
-    const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
-    const [addedToCart, setAddedToCart] = useState({});
 
 
     const plantsArray = [
